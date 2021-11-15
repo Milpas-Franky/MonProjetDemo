@@ -1,5 +1,5 @@
 const debug = require('debug')('monprojetdemo:create_database');
-const mysql = require('mysql2');
+const mysql = require('mysql2'); 
 
 // create the connection to database
 const connection = mysql.createConnection({
