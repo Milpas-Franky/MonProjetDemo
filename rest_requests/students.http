@@ -9,3 +9,11 @@ content-type: application/json
     "firstName": "Hatim",
     "lastName": "Naimi"
 }
+
+###
+
+GET http://localhost:3000/students/2
+
+###
+
+DELETE http://localhost:3000/students/2

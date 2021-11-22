@@ -4,13 +4,16 @@ image: gitpod/workspace-mysql
 tasks:
   - init: |
       npm install
+      gp await-port 3306
       npm run create_database
       npm run create_tables
-    command: npm run dev
+    command: |
+      gp await-port 3306
+      npm run dev
 
 # List the ports to expose. Learn more https://www.gitpod.io/docs/config-ports/
 ports:
   - port: 3000
-    onOpen: open-preview
+    onOpen: ignore
   - port: 3306
     onOpen: ignore

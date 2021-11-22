@@ -10,8 +10,6 @@ const connection = mysql.createConnection({
 connection.query(
     'create database studentdb',
     function(err, results, fields) {
-      debug(err);
-      debug(results); // results contains rows returned by server
       connection.close();
     }
 );

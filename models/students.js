@@ -1,4 +1,4 @@
-const { Sequelize } = require('sequelize');
+const { sequelize, DataTypes, Model } = require('sequelize');  
 
 const sequelize = new sequelize('studentb', 'root', '', {
     host: 'localhost',
@@ -15,6 +15,8 @@ students.init({
    lastname: {
        type: DataTypes.STRING,
        allowNull: false 
-   },
+   }
+}, { sequelize, modelName: "student" });
 
-})
+module.exports = { sequelize, Student };
+
