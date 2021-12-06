@@ -1,10 +1,11 @@
+require('dotenv').config();
 const debug = require("debug")("monprojetdemo:schema");
 const mysql = require("mysql2");
 
 // create the connection to database
 const connection = mysql.createConnection({
-  host: process.env.DB_HOSTNAME || "localhost",
-  user: process.env.DB_USERNAME || "root",
+  host: process.env.DB_HOSTNAME,
+  user: process.env.DB_USERNAME,
   database: "mysql",
 });
 

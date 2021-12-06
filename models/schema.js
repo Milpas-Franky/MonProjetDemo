@@ -3,6 +3,7 @@ const Teacher = require("./teacher");
 const Class = require("./class");
 const EducationUnit = require("./education_unit");
 const TeachingPeriod = require("./teaching_period");
+const User = require("./user");
 
 Teacher.hasMany(Class);
 Class.belongsTo(Teacher);
@@ -22,4 +23,5 @@ module.exports = {
   Student,
   Teacher,
   TeachingPeriod,
+  User,
 };

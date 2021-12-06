@@ -1,3 +1,4 @@
+require('dotenv').config();
 const debug = require("debug")("monprojetdemo:schema");
 const sequelize = require("./connection");
 const {
@@ -7,6 +8,8 @@ const {
   Teacher,
   TeachingPeriod,
 } = require("./schema");
+const User = require("./user");
+const { hash } = require("../password_hash");
 
 (async () => {
   debug("Recreating tables...");
@@ -163,6 +166,11 @@ const {
   await projweb2_s1_2021.addStudents([carole, hatim]);
   await projweb2_s1_2122.addStudents([nadege, michael, jonathan]);
   await projint_s1_2122.addStudents([carole, hatim, thierno]);
+
+  const froland = await User.create({
+    username: "froland",
+    password: await hash("password"),
+  });
 
   debug("Samples imported.");
 
