@@ -1,0 +1,26 @@
+POST http://localhost:3000/tokens/generate
+Content-Type: application/json
+
+{
+  "username": "froland",
+  "password": "blablabla"
+}
+
+###
+
+POST http://localhost:3000/tokens/generate
+Content-Type: application/json
+
+{
+  "username": "bidule",
+  "password": "blablabla"
+}
+###
+
+POST http://localhost:3000/tokens/generate
+Content-Type: application/json
+
+{
+  "username": "froland",
+  "password": "password"
+}
