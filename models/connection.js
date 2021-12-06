@@ -6,11 +6,11 @@ const { Sequelize } = require("sequelize");
 
 debug("Reading environment variables...");
 
-const db_hostname = process.env.DB_HOSTNAME || "localhost";
-const db_dbname = process.env.DB_DBNAME || "studentdb";
-const db_username = process.env.DB_USERNAME || "root";
-const db_password = process.env.DB_PASSWORD || "";
-const db_dialect = process.env.DB_DIALECT || "mysql";
+const db_hostname = process.env.DB_HOSTNAME;
+const db_dbname = process.env.DB_DBNAME;
+const db_username = process.env.DB_USERNAME;
+const db_password = process.env.DB_PASSWORD;
+const db_dialect = process.env.DB_DIALECT;
 
 debug("Connecting to database...");
 

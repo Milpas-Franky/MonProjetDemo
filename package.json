@@ -4,14 +4,15 @@
   "private": true,
   "scripts": {
     "start": "node ./bin/www",
-    "dev": "DEBUG=monprojetdemo:* NODE_ENV=development nodemon ./bin/www",
-    "create_database": "DEBUG=monprojetdemo:* node ./models/create_database.js",
-    "create_tables": "DEBUG=monprojetdemo:* node ./models/create_tables.js",
-    "import_samples": "DEBUG=monprojetdemo:* node ./models/import_samples.js"
+    "dev": "nodemon ./bin/www",
+    "create_database": "node ./models/create_database.js",
+    "create_tables": "node ./models/create_tables.js",
+    "import_samples": "node ./models/import_samples.js"
   },
   "dependencies": {
     "cookie-parser": "~1.4.4",
     "debug": "~2.6.9",
+    "dotenv": "^10.0.0",
     "ejs": "~2.6.1",
     "express": "~4.16.1",
     "http-errors": "~1.6.3",
