@@ -15,12 +15,23 @@ Content-Type: application/json
   "username": "bidule",
   "password": "blablabla"
 }
+
 ###
 
 POST http://localhost:3000/tokens/generate
 Content-Type: application/json
 
 {
-  "username": "froland",
+  "username": "admin_user",
+  "password": "password"
+}
+
+###
+
+POST http://localhost:3000/tokens/generate
+Content-Type: application/json
+
+{
+  "username": "plain_user",
   "password": "password"
 }

@@ -8,12 +8,18 @@ router.get(
   "/",
   passport.authenticate("jwt", { session: false }),
   async function (req, res, next) {
-    debug("List classes");
-    const classes = await Class.findAll({
-      include: [EducationUnit, Teacher],
-    });
-    res.json(classes);
+    debug(`List classes [user ${req.user.username}]`);
+    const roles = await req.user.getRoles();
+    if (roles.find((role) => role.name === "admin")) {
+      const classes = await Class.findAll({
+        include: [EducationUnit, Teacher],
+      });
+      res.json(classes);
+    } else {
+      res.sendStatus(403);
+    }
   }
 );
 
 module.exports = router;
+
