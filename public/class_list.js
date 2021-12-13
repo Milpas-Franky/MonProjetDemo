@@ -27,6 +27,11 @@ function populateTable(classes) {
   tableBody.replaceChildren(...classRows);
 }
 
-fetch("/classes/")
+const token = sessionStorage.getItem("token");
+fetch("/classes/", {
+  headers: {
+    "Authorization": "Bearer " + token
+  }
+})
   .then((response) => response.json())
   .then((classes) => populateTable(classes));

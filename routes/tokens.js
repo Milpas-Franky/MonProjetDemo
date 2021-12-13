@@ -14,8 +14,9 @@ router.post("/generate", async function (req, res, next) {
       username: username,
     },
   });
-  if (user != null && await verify(user.password, passwordToVerify)) {
-    res.json(generate(user.id, user.username));
+  if (user != null && (await verify(user.password, passwordToVerify))) {
+    const token = generate(user.id, user.username);
+    res.json({ token: token });
   } else {
     res.sendStatus(403);
   }

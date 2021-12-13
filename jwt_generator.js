@@ -16,4 +16,4 @@ function generate(userId, username) {
   return jwt.sign(payload, secret, options);
 }
 
-module.exports = { generate };
+module.exports = { generate, options, secret };
