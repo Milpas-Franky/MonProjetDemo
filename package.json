@@ -30,5 +30,15 @@
   "devDependencies": {
     "nodemon": "^2.0.13",
     "prettier": "2.5.0"
+  },
+  "nodemonConfig": {
+    "ignore": [
+      "public"
+    ],
+    "ext": "js,json,jsx",
+    "watch": [
+      "bin/www",
+      "."
+    ]
   }
 }
