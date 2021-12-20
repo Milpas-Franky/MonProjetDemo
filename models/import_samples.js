@@ -43,6 +43,15 @@ const { hash } = require("../password_hash");
     lastName: "Guedem Noumbissie",
   });
 
+  const fakeStudents = [];
+  for (let i = 0; i < 50; i++) {
+    const student = await Student.create({
+      firstName: `Student${i}`,
+      lastName: `Student${i}`,
+    });
+    fakeStudents.push(student);
+  }
+
   const mrsSonneville = await Teacher.create({
     firstName: "Véronique",
     lastName: "Sonneville",
@@ -167,6 +176,7 @@ const { hash } = require("../password_hash");
   await projweb2_s1_2021.addStudents([carole, hatim]);
   await projweb2_s1_2122.addStudents([nadege, michael, jonathan]);
   await projint_s1_2122.addStudents([carole, hatim, thierno]);
+  await projint_s1_2122.addStudents(fakeStudents);
 
   const user = await Role.create({
     name: "user",
