@@ -47,7 +47,9 @@ router.get(
     debug(`List students from class ${classId} [user ${req.user.username}]`);
     const roles = await req.user.getRoles();
     if (roles.find((role) => role.name === "admin")) {
-      const students = await Student.findAll({
+      const limit = parseInt(req.query.limit);
+      const offset = parseInt(req.query.offset);
+      const students = await Student.findAndCountAll({
         include: [
           {
             model: Class,
@@ -56,6 +58,8 @@ router.get(
             },
           },
         ],
+        limit: limit,
+        offset: offset,
       });
 
       res.json(students);
