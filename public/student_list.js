@@ -80,6 +80,13 @@ const populateStudentTable = (studentsData) => {
   inProgressMsg.classList.add("d-none");
 };
 
+const manageError = (error) => {
+  inProgressMsg.classList.add("d-none");
+  studentTable.classList.add("d-none");
+  noStudentMsg.classList.add("d-none");
+  errorMsg.classList.remove("d-none");
+}
+
 const currentUrl = new URL(document.location);
 const classId = currentUrl.searchParams.get("class_id");
 
@@ -92,12 +99,15 @@ fetch(`/classes/${classId}`, { headers: fetchHeaders })
   .then((classData) => populateClassInfo(classData));
 
 const fetchStudents = (offset) => {
+  inProgressMsg.classList.remove("d-none");
+  studentTable.classList.add("d-none");
   const studentRequestParams = new URLSearchParams({ limit: PAGINATION_LIMIT, offset: offset });
   fetch(`/classes/${classId}/students?${studentRequestParams.toString()}`, {
     headers: fetchHeaders,
   })
     .then((response) => response.json())
-    .then((studentsData) => populateStudentTable(studentsData));
+    .then((studentsData) => populateStudentTable(studentsData))
+    .catch((error) => manageError(error));
 }
 
 fetchStudents(currentOffset);
