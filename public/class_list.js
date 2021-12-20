@@ -10,7 +10,11 @@ function populateTable(classes) {
     const row = document.createElement("tr");
 
     const nameCol = document.createElement("td");
-    nameCol.innerText = c.shortName;
+    const studentListLink = document.createElement("a");
+    const params = new URLSearchParams({ class_id: c.id });
+    studentListLink.href = `/student_list.html?${params.toString()}`;
+    studentListLink.innerText = c.shortName;
+    nameCol.appendChild(studentListLink);
     row.appendChild(nameCol);
 
     const euCol = document.createElement("td");
