@@ -12,7 +12,10 @@ GET http://localhost:3000/classes/
 
 ###
 
-GET http://localhost:3000/classes/4/students
+GET http://localhost:3000/classes/4
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjEsInByZWZlcnJlZF91c2VybmFtZSI6ImFkbWluX3VzZXIiLCJpYXQiOjE2NDAwMDc5MzMsImV4cCI6MTY0MDA5NDMzMywiYXVkIjoiTW9uUHJvamV0RGVtbyBBUEkiLCJpc3MiOiJNb25Qcm9qZXREZW1vIHRva2VuIGdlbmVyYXRvciJ9.FVLRpN7qcQlP_sYM_2j4SGO_TO4s16nuLrGbGpZBRDA
 
 ###
+
+GET http://localhost:3000/classes/4/students
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjEsInByZWZlcnJlZF91c2VybmFtZSI6ImFkbWluX3VzZXIiLCJpYXQiOjE2NDAwMDc5MzMsImV4cCI6MTY0MDA5NDMzMywiYXVkIjoiTW9uUHJvamV0RGVtbyBBUEkiLCJpc3MiOiJNb25Qcm9qZXREZW1vIHRva2VuIGdlbmVyYXRvciJ9.FVLRpN7qcQlP_sYM_2j4SGO_TO4s16nuLrGbGpZBRDA

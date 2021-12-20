@@ -22,6 +22,24 @@ router.get(
 );
 
 router.get(
+  "/:id",
+  passport.authenticate("jwt", { session: false }),
+  async function (req, res, next) {
+    const classId = req.params.id;
+    debug(`Details from class ${classId} [user ${req.user.username}]`);
+    const roles = await req.user.getRoles();
+    if (roles.find((role) => role.name === "admin")) {
+      const classInfo = await Class.findByPk(classId, {
+        include: ["teacher", "educationUnit"],
+      });
+      res.json(classInfo);
+    } else {
+      res.sendStatus(403);
+    }
+  }
+);
+
+router.get(
   "/:id/students",
   passport.authenticate("jwt", { session: false }),
   async function (req, res, next) {
@@ -34,10 +52,10 @@ router.get(
           {
             model: Class,
             where: {
-              id: classId
-            }
-          }
-        ]
+              id: classId,
+            },
+          },
+        ],
       });
 
       res.json(students);
@@ -47,6 +65,4 @@ router.get(
   }
 );
 
-
 module.exports = router;
-
