@@ -1,37 +1,35 @@
-const classList = document.getElementById("classList");
+const classTableBody = document.getElementById("classTableBody");
+
+const token = sessionStorage.getItem("token");
+if (!token) {
+  location.assign("/login.html");
+}
 
 function populateTable(classes) {
   const classRows = classes.map((c) => {
     const row = document.createElement("tr");
 
     const nameCol = document.createElement("td");
-    const nameTxt = document.createTextNode(c.shortName);
-    nameCol.appendChild(nameTxt);
+    nameCol.innerText = c.shortName;
     row.appendChild(nameCol);
 
     const euCol = document.createElement("td");
-    const euTxt = document.createTextNode(c.educationUnit.name);
-    euCol.appendChild(euTxt);
+    euCol.innerText = c.educationUnit.name;
     row.appendChild(euCol);
 
     const teacherCol = document.createElement("td");
-    const teacherTxt = document.createTextNode(
-      [c.teacher.firstName, c.teacher.lastName].join(" ")
-    );
-    teacherCol.appendChild(teacherTxt);
+    teacherCol.innerText = [c.teacher.firstName, c.teacher.lastName].join(" ");
     row.appendChild(teacherCol);
 
     return row;
   });
-  const tableBody = classList.querySelector("tbody");
-  tableBody.replaceChildren(...classRows);
+  classTableBody.replaceChildren(...classRows);
 }
 
-const token = sessionStorage.getItem("token");
 fetch("/classes/", {
   headers: {
-    "Authorization": "Bearer " + token
-  }
+    Authorization: "Bearer " + token,
+  },
 })
   .then((response) => response.json())
   .then((classes) => populateTable(classes));

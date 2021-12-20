@@ -1,11 +1,14 @@
+// Variable declarations
+
 const form = document.querySelector("form");
 const usernameInput = document.getElementById("usernameInput");
 const passwordInput = document.getElementById("passwordInput");
 const invalidCredsMsg = document.getElementById("invalidCredsMsg");
 
+// Function declarations
+
 function storeToken(token) {
-  window.sessionStorage.setItem("token", token);
-  window.location.assign("/class_list.html");
+  sessionStorage.setItem("token", token);
 }
 
 function handleAuthenticationResponse(response) {
@@ -21,7 +24,6 @@ function handleAuthenticationResponse(response) {
 
 function login(event) {
   event.preventDefault();
-  event.stopPropagation();
 
   if (!form.checkValidity()) {
     form.classList.add("was-validated");
@@ -29,12 +31,15 @@ function login(event) {
     invalidCredsMsg.classList.replace("visible", "invisible");
     usernameInput.setAttribute("disabled", "disabled");
     passwordInput.setAttribute("disabled", "disabled");
+
     const loginData = {
       username: usernameInput.value,
       password: passwordInput.value,
     };
+
     const headers = new Headers();
     headers.append("Content-Type", "application/json");
+
     fetch("/tokens/generate", {
       method: "POST",
       body: JSON.stringify(loginData),
@@ -42,9 +47,14 @@ function login(event) {
     })
       .then(handleAuthenticationResponse)
       .then((data) => storeToken(data.token))
-      .catch((error) => console.log(error));
+      .then(() => {
+        location.assign("/class_list.html");
+      })
+      .catch((error) => console.error(error));
   }
 }
 
-window.sessionStorage.removeItem("token");
+// Code to execute when document loaded
+
+sessionStorage.removeItem("token");
 form.addEventListener("submit", login);
